@@ -1,0 +1,135 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 20, 2019, 8:53:30 AM
+    Author     : yinx
+*/
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+
+
+#wrapper{
+    width: 100%;
+    max-width: 480px;
+    min-height: 500px;
+    border: solid 1px black;
+    margin-left: auto;
+    margin-right:  auto;    
+    position: relative;
+    overflow-x: hidden;
+}
+
+#slide-content p{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#slide-nav {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.pronc p{
+    position: relative;
+}
+
+.pronc.pattern{
+    /*display: none;*/
+}
+
+#word-info {
+    border-bottom: solid 1px black;
+}
+
+#word-info .word{
+    font-weight: bold;
+    position: relative;
+}
+
+.word .type{
+    position: absolute;
+    right: 10px;
+    font-style: italic;
+}
+
+.pronc p img{
+    width: 20px;    
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.extend-type{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    border-bottom: solid 1px black;
+}
+
+.detail p{
+    /*    border-bottom: solid 1px #bbb;*/
+}
+
+.detail p.vietnamese{
+    border-bottom: none;
+    color: #bbb;
+}
+
+.detail {
+    /*border-bottom: solid 1px black;*/
+}
+
+.non-display {
+    display: none;
+}
+
+#word-relationship h4{
+    margin-top: 5px;
+    border-bottom: solid #bbb 1px;
+}
+
+#wrapper .extend{
+    position: absolute;
+    width: 100%;
+}
+
+
+.extend#examples{
+    left: 0;
+}
+
+.extend#word-family{
+    left: 100%;
+}
+
+.extend#word-description{
+    left: 100%;
+}
+.extend#word-relationship{
+    left: 100%;
+}
+
+.english:hover {cursor: pointer;}
+
+#wrapper form{
+    margin-left: 10px;
+    margin-right: 10px;
+}
