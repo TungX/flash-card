@@ -41,7 +41,7 @@ app.use(session({
         expires: 600000
     }
 }));
-var urlNonAuths = ['/sessions', '/users/add', '/users'];
+var urlNonAuths = ['/sessions', '/users/add', '/users','/words'];
 app.use((req, res, next) => {
     if (req.cookies.user_sid && !req.session.user) {
         res.clearCookie('user_sid');
@@ -99,6 +99,8 @@ app.use((req, res, next) => {
 //app.all("*", checkAuth());
 app.use('/users', require('./routers/user'));
 app.use('/sessions', require('./routers/session'));
+app.use('/words', require('./routers/word'));
+app.use('/api/words', require('./routers/api/word'));
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/public/" + "learn.html");

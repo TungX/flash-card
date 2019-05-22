@@ -29,7 +29,7 @@ function login(req, res) {
             console.log('login success');
             req.session.user = user;
             console.log(req.session.user);
-            res.redirect('/');
+            res.redirect('/words');
         }
         
     });

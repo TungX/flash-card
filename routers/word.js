@@ -8,8 +8,8 @@
 const router = require('express').Router();
 const controller = require('../controllers/word');
 
-//router.get('/', wordController.getAll);
-//router.post('/', wordController.add);
-//router.put('/:id', wordController.update);
-//router.delete('/:id', wordController.delete);
+router.get('/', controller.getAll);
+router.post('/', controller.insert);
+router.put('/:id', controller.update);
+router.delete('/:id', controller.remove);
 module.exports = router;

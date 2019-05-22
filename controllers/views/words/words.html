@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>Manager words</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="search">
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group col-sm-10">
+                    <input type="text" class="form-control pull-right" id="word" name="word">
+                </div>
+                <button type="submit" class="btn btn-default col-sm-2">Search</button>
+            </form>
+        </div>
+        <div><button class="btn btn-success col-sm-2 pull-right" data-toggle="modal" data-target="#add-word">+Add</button></div>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                </tr>
+                <tr>
+                    <td>Mary</td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                </tr>
+                <tr>
+                    <td>July</td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div id="add-word" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add word</h4>
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <label class="form-group col-sm-12" for="word-content">Word:</label>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="word-content" placeholder="Enter word content"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="pronunciation pattern">
+                            <label class="form-group col-sm-12">Pronunciation</label>
+                            <div class="form-group ">
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" placeholder="Dialect" required>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="Pronunciation" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Audio url" required>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="form-group col-sm-12">Example:</label>
+                        <div class="example pattern">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">English:</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" class="form-control" placeholder="Enter example" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-sm-2">Audio url:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="audio url">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Vietnamese:</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" class="form-control" placeholder="Enter example" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="description">
+                            <div class="form-group">
+                                <label class="control-group col-sm-12">Description:</label>
+                                <div class="col-sm-12">
+                                    <textarea type="text" class="form-control" placeholder="Enter description" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-group col-sm-12">Mean:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" placeholder="Enter mean of word" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="word-relationships">
+                            <div class="form-group pattern">
+                                <label class="control-label col-sm-2" for="example">Word:</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" class="form-control" id="example" placeholder="Enter example"
+                                        required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

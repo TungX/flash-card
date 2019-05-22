@@ -4,4 +4,28 @@
  * and open the template in the editor.
  */
 
+const Word = require('../models/word');
+
+function getAll(req, res){
+    res.sendFile(__dirname + '/views/words/words.html');
+}
+
+function insert(req, res){
+
+}
+
+function update(req, res){
+
+}
+
+function remove(req, res){
+
+}
+
+module.exports = {
+    getAll,
+    insert,
+    update,
+    remove
+};
 
