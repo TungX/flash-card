@@ -41,7 +41,7 @@ app.use(session({
         expires: 600000
     }
 }));
-var urlNonAuths = ['/sessions', '/users/add', '/users','/words'];
+var urlNonAuths = ['/sessions', '/users/add', '/users', '/words'];
 app.use((req, res, next) => {
     if (req.cookies.user_sid && !req.session.user) {
         res.clearCookie('user_sid');
@@ -56,47 +56,7 @@ app.use((req, res, next) => {
     next();
 });
 
-//var sessionChecker = (req, res, next) => {
-//    if (req.session.user && req.cookies.user_sid) {
-//        res.redirect('/');
-//    } else {
-//        next();
-//    }
-//};
-//
-//// route for user Login
-//app.route('/login')
-//        .get(sessionChecker, (req, res) => {
-//            res.sendFile(__dirname + '/public/login.html');
-//        })
-//        .post((req, res) => {
-//            
-//        });
-//
-//app.get('/logout', (req, res) => {
-//    if (req.session.user && req.cookies.user_sid) {
-//        res.clearCookie('user_sid');
-//        res.redirect('/');
-//    }
-//});
 
-//
-//function checkAuth(req, res, next) {
-//    console.log('checkAuth ' + req.url);
-//
-//    // don't serve /secure to those not logged in
-//    // you should add to this list, for each and every secure url
-//    if (req.url === '/secure' && (!req.session || !req.session.authenticated)) {
-//        res.render('unauthorised', {status: 403});
-//        return;
-//    }
-//
-//    next();
-//}
-//app.use(express.cookieParser());
-//app.use(express.session({secret: 'flash-card-by-maihoang'}));
-//app.use(express.bodyParser());
-//app.all("*", checkAuth());
 app.use('/users', require('./routers/user'));
 app.use('/sessions', require('./routers/session'));
 app.use('/words', require('./routers/word'));
@@ -105,8 +65,15 @@ app.use('/api/words', require('./routers/api/word'));
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/public/" + "learn.html");
 });
-//app.get('/practice', function (req, res) {
-//    res.sendFile(__dirname + "/public/" + "practice.html");
+
+//const Word = require('./models/word');
+//const newWord = Word.create({
+//    content: 'hello',
+//    proncs: [{content: '/həˈləʊ/', audio_url: 'https://d27ucmmhxk51xv.cloudfront.net/media/english/ameProns/hello.mp3?version=1.1.86'}],
+//    examples: [{content: 'Hello, John! How are you?', content_vi: 'Chao Jon, Ban khoe khong', audio_url: 'https://d27ucmmhxk51xv.cloudfront.net/media/english/exaProns/p008-001354151.mp3?version=1.1.86'}, {content: 'Stanley, come and say hello to your nephew.', content_vi: 'Stanley, đến và nói xin chào với cháu trai của bạn.', audio_url: 'https://d27ucmmhxk51xv.cloudfront.net/media/english/exaProns/p008-001725228.mp3?version=1.1.86'}],
+//    relationships: [{content: 'hi', type: 'syn', example: 'Hi, Gwen – did you have a nice weekend?'}, {content: 'hey', type: 'syn', example: 'Hey, Scott! What’s up, buddy?'}],
+//    description: [{type: 'text', content: 'used as a greeting when you see or meet someone'}, {type: 'text', content: 'xin chào'}],
+//    user_id: '5ce3c179d3886f34f9763ef3'
 //});
 
 var server = app.listen(8081, function () {

@@ -19,10 +19,16 @@ and open the template in the editor.
 }
 
 .active, .dot:hover {
-    background-color: #717171;
+    background-color:cornflowerblue;
 }
 
+.nav a {
+    color: red;
+}
 
+.nav {
+    margin-bottom: 15px;
+}
 
 #wrapper{
     width: 100%;
@@ -132,4 +138,25 @@ and open the template in the editor.
 #wrapper form{
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.add-element{
+    text-align: right;
+}
+
+.group{
+    /*position: relative;*/
+}
+
+.group .remove-element{
+    text-align: right;
+}
+.remove-element:hover{
+    cursor: pointer;
+}
+.group{
+    /*border-bottom: solid 1px red;*/
+}
+.wrapper-content{
+    /*border: solid 1px red;*/
 }
