@@ -6,254 +6,252 @@ and open the template in the editor.
 -->
 <html>
 
-    <head>
-        <title>Manager words</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<head>
+    <title>Manager words</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-        <link rel="stylesheet" href="/style.css">
-        <script src="/application.js"></script>
-    </head>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/application.js"></script>
+</head>
 
-    <body>
-        <div class="container">
-            <div id="search">
-                <form class="form-inline" action="/action_page.php">
-                    <div class="form-group col-sm-10">
-                        <input type="text" class="form-control pull-right" id="word" name="word">
-                    </div>
-                    <button type="submit" class="btn btn-default col-sm-2">Search</button>
-                </form>
-            </div>
-            <div><button class="btn btn-success col-sm-2 pull-right" data-toggle="modal" data-target="#add-word">+Add</button></div>
-            <hr>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                    </tr>
-                </tbody>
-            </table>
+<body>
+    <div class="container">
+        <div id="search">
+            <form class="form-inline" action="/action_page.php">
+                <div class="form-group col-sm-10">
+                    <input type="text" class="form-control pull-right" id="word" name="word">
+                </div>
+                <button type="submit" class="btn btn-default col-sm-2">Search</button>
+            </form>
         </div>
+        <div><button class="btn btn-success col-sm-2 pull-right" data-toggle="modal" data-target="#add-word">+Add</button></div>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                </tr>
+                <tr>
+                    <td>Mary</td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                </tr>
+                <tr>
+                    <td>July</td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-        <!-- Modal -->
-        <div id="add-word" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Add word</h4>
-                    </div>
-                    <form class="form-horizontal" action="/words" method="post">
-                        <div class="modal-body">
+    <!-- Modal -->
+    <div id="add-word" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add word</h4>
+                </div>
+                <form class="form-horizontal" action="/words" method="post">
+                    <div class="modal-body">
 
-                            <ul class="nav nav-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#" data-class="word-info">Word info</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" data-class="pronunciations">Pronunciation</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" data-class="word-families">Word Families</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" data-class="examples">Example</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" data-class="descriptions">Descriptions</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" data-class="word-relationships">Word relationships</a>
-                                </li>
-                            </ul>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" data-class="word-info">Word info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-class="pronunciations">Pronunciation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-class="word-families">Word Families</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-class="examples">Example</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-class="descriptions">Descriptions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-class="word-relationships">Word relationships</a>
+                            </li>
+                        </ul>
 
-                            <div class="tab-content word-info">
-                                <!--<label class="form-group col-sm-12">Word info</label>-->
-                                <div class="form-group">
-                                    <div class="col-sm-4">
-                                        <select class="form-control word-type" name="type">
+                        <div class="tab-content word-info">
+                            <!--<label class="form-group col-sm-12">Word info</label>-->
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <select class="form-control word-type" name="type">
                                             <option value="n">Noun</option>
                                             <option value="v">Verb</option>
                                             <option value="adj">Adjective</option>
                                             <option value="adv">Adverb</option>
                                         </select>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" placeholder="Enter word content"
-                                               required name="content">
-                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Enter word content" required name="content">
                                 </div>
                             </div>
-                            <div class="tab-content pronunciations non-display">
-                                <!--<label class="form-group col-sm-12">Pronunciations</label>-->
-                                <div class="wrapper-content">
-                                    <div class="group pattern">
-                                        <div class="form-group">
-                                            <div class="col-sm-2">
-                                                <input type="text" class="form-control dialect" placeholder="Dialect" required>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control content" placeholder="Pronunciation" required>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control audio_url" placeholder="Audio url" required>
-                                            </div>
-
+                        </div>
+                        <div class="tab-content pronunciations non-display">
+                            <!--<label class="form-group col-sm-12">Pronunciations</label>-->
+                            <div class="wrapper-content">
+                                <div class="group pattern">
+                                    <div class="form-group">
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control dialect" placeholder="Dialect" required>
                                         </div>
-                                        <p class="remove-element non-display"><a href="#">-remove</a></p>
-                                    </div>
-                                </div>
-                                <p class="add-element"><a href="#">+Add pronunciation</a></p>
-                            </div>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control content" placeholder="Pronunciation" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control audio_url" placeholder="Audio url" required>
+                                        </div>
 
-                            <div class="tab-content word-families non-display">
-                                <!--<label class="form-group col-sm-12">Word Families</label>-->
-                                <div class="wrapper-content">
-                                    <div class="group pattern">
-                                        <div class="form-group">
-                                            <div class="col-sm-4">
-                                                <select class="form-control word-type">
+                                    </div>
+                                    <p class="remove-element non-display"><a href="#">-remove</a></p>
+                                </div>
+                            </div>
+                            <p class="add-element"><a href="#">+Add pronunciation</a></p>
+                        </div>
+
+                        <div class="tab-content word-families non-display">
+                            <!--<label class="form-group col-sm-12">Word Families</label>-->
+                            <div class="wrapper-content">
+                                <div class="group pattern">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <select class="form-control word-type">
                                                     <option value="n">Noun</option>
                                                     <option value="v">Verb</option>
                                                     <option value="adj">Adjective</option>
                                                     <option value="adv">Adverb</option>
                                                 </select>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control content" placeholder="Enter word content"
-                                                       required>
-                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <textarea type="text" class="form-control examle" placeholder="Enter example" required></textarea>
-                                            </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control content" placeholder="Enter word content" required>
                                         </div>
-                                        <p class="remove-element non-display"><a href="#">-remove</a></p>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <textarea type="text" class="form-control example" placeholder="Enter example" required></textarea>
+                                        </div>
+                                    </div>
+                                    <p class="remove-element non-display"><a href="#">-remove</a></p>
                                 </div>
-                                <p class="add-element"><a href="#">+Add word family</a></p>
+                            </div>
+                            <p class="add-element"><a href="#">+Add word family</a></p>
+                        </div>
+
+                        <div class="tab-content examples non-display">
+                            <!--<label class="form-group col-sm-12">Example</label>-->
+                            <div class="wrapper-content">
+                                <div class="pattern group">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2">English:</label>
+                                        <div class="col-sm-10">
+                                            <textarea type="text" class="form-control content" placeholder="Enter example" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2">Audio url:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control audio_url" placeholder="audio url">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2">Vietnamese:</label>
+                                        <div class="col-sm-10">
+                                            <textarea type="text" class="form-control content_vi" placeholder="Enter example" required></textarea>
+                                        </div>
+                                    </div>
+                                    <p class="remove-element non-display"><a href="#">-remove</a></p>
+                                    <!--<img src="/imgs/close-delete-cancel-operation-browser-512.png" class="remove-element non-display">-->
+                                </div>
                             </div>
 
-                            <div class="tab-content examples non-display">
-                                <!--<label class="form-group col-sm-12">Example</label>-->
-                                <div class="wrapper-content">
-                                    <div class="pattern group">
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2">English:</label>
-                                            <div class="col-sm-10">
-                                                <textarea type="text" class="form-control content" placeholder="Enter example" required></textarea>
-                                            </div>
+                            <p class="add-element"><a href="#">+Add example</a></p>
+                        </div>
+
+                        <div class="tab-content descriptions non-display">
+                            <!--<label class="form-group col-sm-12">Descriptions</label>-->
+                            <div class="wrapper-content">
+                                <div class="group pattern">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <textarea type="text" class="form-control content" placeholder="Enter description" required></textarea>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2">Audio url:</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control audio_url" placeholder="audio url">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2">Vietnamese:</label>
-                                            <div class="col-sm-10">
-                                                <textarea type="text" class="form-control content_vi" placeholder="Enter example" required></textarea>
-                                            </div>
-                                        </div>
-                                        <p class="remove-element non-display"><a href="#">-remove</a></p>
-                                        <!--<img src="/imgs/close-delete-cancel-operation-browser-512.png" class="remove-element non-display">-->
                                     </div>
+                                    <p class="remove-element non-display"><a href="#">-remove</a></p>
                                 </div>
-
-                                <p class="add-element"><a href="#">+Add example</a></p>
-                            </div>
-
-                            <div class="tab-content descriptions non-display">
-                                <!--<label class="form-group col-sm-12">Descriptions</label>-->
-                                <div class="wrapper-content">
-                                    <div class="group pattern">
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <textarea type="text" class="form-control content" placeholder="Enter description" required></textarea>
-                                            </div>
+                                <div class="group pattern-file">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="file" class="form-control content" accept="image/*">
                                         </div>
-                                        <p class="remove-element non-display"><a href="#">-remove</a></p>
                                     </div>
-                                    <div class="group pattern-file">
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <input type="file"class="form-control content" accept="image/*">
-                                            </div>
-                                        </div>
-                                        <p class="remove-element non-display"><a href="#">-remove</a></p>
-                                    </div>
+                                    <p class="remove-element non-display"><a href="#">-remove</a></p>
                                 </div>
-                                <p class="add-element"><a href="#">+Add description</a></p>
-                                <p class="add-element" data-type="-file"><a href="#">+Add image</a></p>
                             </div>
+                            <p class="add-element"><a href="#">+Add description</a></p>
+                            <p class="add-element" data-type="-file"><a href="#">+Add image</a></p>
+                        </div>
 
-                            <div class="tab-content word-relationships non-display">
-                                <!--<label class="form-group col-sm-12">Word relationships</label>-->
-                                <div class="wrapper-content">
-                                    <div class="group pattern">
-                                        <div class="form-group">
-                                            <div class="col-sm-4">
-                                                <select class="form-control type-relationship">
+                        <div class="tab-content word-relationships non-display">
+                            <!--<label class="form-group col-sm-12">Word relationships</label>-->
+                            <div class="wrapper-content">
+                                <div class="group pattern">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <select class="form-control type-relationship">
                                                     <option value="syn">Synonyms</option>
                                                     <option value="opp">Opposite</option>
                                                 </select>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control content" id="example" placeholder="Word relationships" required>
-                                            </div>                                            
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <textarea type="text" class="form-control examle" placeholder="Enter example" required></textarea>
-                                            </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control content" id="example" placeholder="Word relationships" required>
                                         </div>
-                                        <p class="remove-element non-display"><a href="#">-remove</a></p>
-                                        <!--<img src="/imgs/close-delete-cancel-operation-browser-512.png" class="remove-element non-display">-->
                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <textarea type="text" class="form-control example" placeholder="Enter example" required></textarea>
+                                        </div>
+                                    </div>
+                                    <p class="remove-element non-display"><a href="#">-remove</a></p>
+                                    <!--<img src="/imgs/close-delete-cancel-operation-browser-512.png" class="remove-element non-display">-->
                                 </div>
-
-                                <p class="add-element"><a href="#">+Add relationships</a></p>
                             </div>
 
-                            <div class="form-group">
-                            </div>
+                            <p class="add-element"><a href="#">+Add relationships</a></p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" >Save</button>
-                        </div>
-                    </form>
-                </div>
 
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
             </div>
+
         </div>
-    </body>
+    </div>
+</body>
 
 </html>

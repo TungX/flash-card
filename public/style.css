@@ -3,10 +3,13 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
+
+
 /* 
     Created on : May 20, 2019, 8:53:30 AM
     Author     : yinx
 */
+
 .dot {
     cursor: pointer;
     height: 15px;
@@ -18,30 +21,32 @@ and open the template in the editor.
     transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
-    background-color:cornflowerblue;
+.active,
+.dot:hover {
+    background-color: cornflowerblue;
 }
 
 .nav a {
     color: red;
+    font-weight: bold;
 }
 
 .nav {
     margin-bottom: 15px;
 }
 
-#wrapper{
+#wrapper {
     width: 100%;
     max-width: 480px;
     min-height: 500px;
     border: solid 1px black;
     margin-left: auto;
-    margin-right:  auto;    
+    margin-right: auto;
     position: relative;
     overflow-x: hidden;
 }
 
-#slide-content p{
+#slide-content p {
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -53,11 +58,11 @@ and open the template in the editor.
     width: 100%;
 }
 
-.pronc p{
+.pronc p {
     position: relative;
 }
 
-.pronc.pattern{
+.pronc.pattern {
     /*display: none;*/
 }
 
@@ -65,36 +70,36 @@ and open the template in the editor.
     border-bottom: solid 1px black;
 }
 
-#word-info .word{
+#word-info .word {
     font-weight: bold;
     position: relative;
 }
 
-.word .type{
+.word .type {
     position: absolute;
     right: 10px;
     font-style: italic;
 }
 
-.pronc p img{
-    width: 20px;    
+.pronc p img {
+    width: 20px;
     position: absolute;
     right: 10px;
     cursor: pointer;
 }
 
-.extend-type{
+.extend-type {
     text-align: center;
     font-weight: bold;
     font-size: 2em;
     border-bottom: solid 1px black;
 }
 
-.detail p{
+.detail p {
     /*    border-bottom: solid 1px #bbb;*/
 }
 
-.detail p.vietnamese{
+.detail p.vietnamese {
     border-bottom: none;
     color: #bbb;
 }
@@ -107,56 +112,61 @@ and open the template in the editor.
     display: none;
 }
 
-#word-relationship h4{
+#word-relationship h4 {
     margin-top: 5px;
     border-bottom: solid #bbb 1px;
 }
 
-#wrapper .extend{
+#wrapper .extend {
     position: absolute;
     width: 100%;
 }
 
-
-.extend#examples{
+.extend#examples {
     left: 0;
 }
 
-.extend#word-family{
+.extend#word-family {
     left: 100%;
 }
 
-.extend#word-description{
-    left: 100%;
-}
-.extend#word-relationship{
+.extend#word-description {
     left: 100%;
 }
 
-.english:hover {cursor: pointer;}
+.extend#word-relationship {
+    left: 100%;
+}
 
-#wrapper form{
+.english:hover {
+    cursor: pointer;
+}
+
+#wrapper form {
     margin-left: 10px;
     margin-right: 10px;
 }
 
-.add-element{
+.add-element {
     text-align: right;
 }
 
-.group{
+.group {
     /*position: relative;*/
 }
 
-.group .remove-element{
+.group .remove-element {
     text-align: right;
 }
-.remove-element:hover{
+
+.remove-element:hover {
     cursor: pointer;
 }
-.group{
+
+.group {
     /*border-bottom: solid 1px red;*/
 }
-.wrapper-content{
+
+.wrapper-content {
     /*border: solid 1px red;*/
 }

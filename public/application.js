@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 var extensions = ['#examples', '#word-family', '#word-description', '#word-relationship'];
-$(document).ready(function () {
+$(document).ready(function() {
     catchEventChooseDot();
     catchEventClickAudioIcon();
     catchEventClickEnglish();
@@ -15,7 +15,7 @@ $(document).ready(function () {
 });
 
 function catchEventChooseDot() {
-    $('#slide-nav .dot').on('click', function () {
+    $('#slide-nav .dot').on('click', function() {
         var indexChoose = $(this).data('index');
         var indexCurrent = $('.active').data('index');
         if (indexCurrent === undefined) {
@@ -28,18 +28,18 @@ function catchEventChooseDot() {
         var eChoose = $(extensions[indexChoose]);
         $('.active').removeClass('active');
         if (indexChoose < indexCurrent) {
-            eCurrent.animate({'left': '100%'});
-            eChoose.animate({'left': '0%'});
+            eCurrent.animate({ 'left': '100%' });
+            eChoose.animate({ 'left': '0%' });
         } else {
-            eCurrent.animate({'left': '-100%'});
-            eChoose.animate({'left': '0%'});
+            eCurrent.animate({ 'left': '-100%' });
+            eChoose.animate({ 'left': '0%' });
         }
         $(this).addClass('active');
     });
 }
 
 function catchEventClickAudioIcon() {
-    $('.pronc img').on('click', function () {
+    $('.pronc img').on('click', function() {
         var src = $(this).data('src');
         if (src === undefined) {
             return;
@@ -47,14 +47,14 @@ function catchEventClickAudioIcon() {
         var audio = $('audio');
         var player = audio[0];
         player.src = src;
-        audio.on('loadeddata', function () {
+        audio.on('loadeddata', function() {
             player.play();
         });
     });
 }
 
 function catchEventClickEnglish() {
-    $('.english').on('click', function () {
+    $('.english').on('click', function() {
         var src = $(this).data('src');
         if (src === undefined) {
             return;
@@ -62,14 +62,14 @@ function catchEventClickEnglish() {
         var audio = $('audio');
         var player = audio[0];
         player.src = src;
-        audio.on('loadeddata', function () {
+        audio.on('loadeddata', function() {
             player.play();
         });
     });
 }
 
 function catchEventClickAddElement() {
-    $('.add-element').on('click', function () {
+    $('.add-element').on('click', function() {
         var classPattern = 'pattern' + ($(this).data('type') || '');
         var wrapperContent = $(this).parent().find('.wrapper-content');
         var element = wrapperContent.find('.' + classPattern).clone().removeClass(classPattern);
@@ -82,14 +82,14 @@ function catchEventClickAddElement() {
 }
 
 function catchEventClickRemoveElement() {
-    $('.remove-element a').on('click', function () {
+    $('.remove-element a').on('click', function() {
         var group = $(this).parents('.group');
         group.remove();
     });
 }
 
 function catchEventClickNavItem() {
-    $('#add-word .nav-item a').on('click', function () {
+    $('#add-word .nav-item a').on('click', function() {
         console.log('remove element');
         $('.' + $('#add-word .active').data('class')).addClass('non-display');
         $('#add-word .active').removeClass('active');
@@ -101,7 +101,7 @@ function catchEventClickNavItem() {
 }
 
 function catchEventWordFormSubmit() {
-    $('#add-word form').on('submit', function (e) {
+    $('#add-word form').on('submit', function(e) {
         e.preventDefault();
         console.log('abc');
         var data = {};
@@ -123,7 +123,7 @@ function catchEventWordFormSubmit() {
         var wordFamilies = $('.word-families .group');
         data['word_families'] = [];
         for (var i = 0; i < wordFamilies.length; i++) {
-            var group = $(proncs[i]);
+            var group = $(wordFamilies[i]);
             var pronc = {};
             pronc.content = group.find('.content').val();
             pronc.type = group.find('select').val();
@@ -134,7 +134,7 @@ function catchEventWordFormSubmit() {
         var examples = $('.examples .group');
         data['examples'] = [];
         for (var i = 0; i < examples.length; i++) {
-            var group = $(proncs[i]);
+            var group = $(examples[i]);
             var pronc = {};
             pronc.content = group.find('.content').val();
             pronc.content_vi = group.find('.content_vi').val();
@@ -145,7 +145,7 @@ function catchEventWordFormSubmit() {
         var descriptions = $('.descriptions .group');
         data['descriptions'] = [];
         for (var i = 0; i < descriptions.length; i++) {
-            var group = $(proncs[i]);
+            var group = $(descriptions[i]);
             var pronc = {};
 
             pronc.content = group.find('.content').val();
@@ -162,11 +162,11 @@ function catchEventWordFormSubmit() {
         var relationships = $('.word-relationships .group');
         data['relationships'] = [];
         for (var i = 0; i < relationships.length; i++) {
-            var group = $(proncs[i]);
+            var group = $(relationships[i]);
             var pronc = {};
             pronc.content = group.find('.content').val();
             pronc.type = group.find('select').val();
-            pronc.example = group.find('example').val();
+            pronc.example = group.find('.example').val();
             data['relationships'].push(pronc);
         }
         console.log(data);
