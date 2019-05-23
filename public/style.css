@@ -170,3 +170,8 @@ and open the template in the editor.
 .wrapper-content {
     /*border: solid 1px red;*/
 }
+
+table#words ul, table#words ol{
+    padding-left: 10px;
+    margin-left: 5px;
+}

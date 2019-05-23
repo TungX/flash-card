@@ -105,7 +105,7 @@ const wordSchema = new mongoose.Schema(
                 type: [relationSchema],
                 default: []
             },
-            description: {
+            descriptions: {
                 type: [descriptionSchema],
                 required: true
             },

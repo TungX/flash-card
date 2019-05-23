@@ -50,9 +50,10 @@ app.use((req, res, next) => {
         next();
         return;
     }
-    if (!req.session.user || !req.cookies.user_sid) {
-        res.redirect('/sessions');
-    }
+//    if (!req.session.user || !req.cookies.user_sid) {
+//        res.redirect('/sessions');
+//        return;
+//    }
     next();
 });
 
