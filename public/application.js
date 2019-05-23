@@ -125,9 +125,11 @@ function catchEventWordFormSubmit() {
         for (var i = 0; i < wordFamilies.length; i++) {
             var group = $(wordFamilies[i]);
             var pronc = {};
-            pronc.content = group.find('.content').val();
-            pronc.type = group.find('select').val();
-            pronc.example = group.find('.example').val();
+            pronc.content = group.find('.content').val().trim();
+            if (pronc.content.length === 0)
+                continue;
+            pronc.type = group.find('select').val().trim();
+            pronc.example = group.find('.example').val().trim();
             data['word_families'].push(pronc);
         }
 
@@ -164,13 +166,13 @@ function catchEventWordFormSubmit() {
         for (var i = 0; i < relationships.length; i++) {
             var group = $(relationships[i]);
             var pronc = {};
-            pronc.content = group.find('.content').val();
-            pronc.type = group.find('select').val();
-            pronc.example = group.find('.example').val();
+            pronc.content = group.find('.content').val().trim();
+            if (pronc.content.length === 0)
+                continue;
+            pronc.type = group.find('select').val().trim();
+            pronc.example = group.find('.example').val().trim();
             data['relationships'].push(pronc);
         }
-        console.log(data);
-
         return false;
     });
 }
