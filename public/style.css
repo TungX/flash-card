@@ -21,9 +21,9 @@ and open the template in the editor.
     transition: background-color 0.6s ease;
 }
 
-.active,
+.slide-nav .active,
 .dot:hover {
-    background-color: cornflowerblue;
+    background-color: #717171;
 }
 
 .nav a {
@@ -38,20 +38,35 @@ and open the template in the editor.
 #wrapper {
     width: 100%;
     max-width: 480px;
-    min-height: 500px;
+    min-height: calc(100vh - 60px);
     border: solid 1px black;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     overflow-x: hidden;
 }
-
-#slide-content p {
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#wrapper .extend .description {
+    height: calc(100vh - 230px);
+    overflow-y: scroll;
+}
+.slide-content{
+    position: relative;
+}
+.slide-content p {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-#slide-nav {
+.slide-content h4 {
+    padding-left: 5px;
+}
+
+.slide-nav {
     position: absolute;
     bottom: 0;
     text-align: center;
@@ -66,16 +81,16 @@ and open the template in the editor.
     /*display: none;*/
 }
 
-#word-info {
-    border-bottom: solid 1px black;
+.word-info {
+    /*border-bottom: solid 1px black;*/
 }
 
-#word-info .word {
+.word-info .word {
     font-weight: bold;
     position: relative;
 }
 
-.word .type {
+.word-info .word .type {
     position: absolute;
     right: 10px;
     font-style: italic;
@@ -92,6 +107,7 @@ and open the template in the editor.
     text-align: center;
     font-weight: bold;
     font-size: 2em;
+    border-top: solid 1px black;
     border-bottom: solid 1px black;
 }
 
@@ -112,29 +128,32 @@ and open the template in the editor.
     display: none;
 }
 
-#word-relationship h4 {
+.word-relationship h4 {
     margin-top: 5px;
     border-bottom: solid #bbb 1px;
 }
 
+.word-relationships .examle{
+    font-style: italic;
+}
 #wrapper .extend {
     position: absolute;
     width: 100%;
 }
 
-.extend#examples {
+.extend.examples {
     left: 0;
 }
 
-.extend#word-family {
+.extend.word-families {
     left: 100%;
 }
 
-.extend#word-description {
+.extend.word-descriptions {
     left: 100%;
 }
 
-.extend#word-relationship {
+.extend.word-relationships {
     left: 100%;
 }
 

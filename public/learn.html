@@ -10,80 +10,76 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="learn.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="learn.js?v1"></script>
 
     </head>
     <body>
         <audio class="non-display" controls></audio>
         <div id="wrapper" class="learning">
-            <div id="slide-content">
-                <div id="word-info">
-                    <p class="word"><span class="content">hello</span> <span class="type">vert</span></p>
-                    <div class="pronc pattern">
-                        <p><span class="content">/həˈləʊ/</span> (<span class="dialect">BrE</span>)<img src="imgs/volume-24-512.png" data-src="https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/h/hel/hello/hello__gb_1.mp3"></p>
-                    </div>    
-                </div>
-                <div class="extend" id="examples">
-                    <div class="extend-type">Examples</div>
-                    <div class="description">
-                        <div class="detail">
-                            <p class="english" data-src="https://d27ucmmhxk51xv.cloudfront.net/media/english/exaProns/p008-001354151.mp3?version=1.1.86">Hello John, how are you?</p>
-                            <p class="vietnamese">Xin chào John, bạn khỏe không?</p>
-                        </div>
-
+            <div class="slide pattern non-display">
+                <div class="slide-content ">
+                    <div class="word-info">
+                        <p class="word"><span class="content">hello</span> <span class="type">vert</span></p>
+                        <div class="pronc pattern">
+                            <p><span class="content">/həˈləʊ/</span> (<span class="dialect">BrE</span>)<img src="imgs/volume-24-512.png" data-src="https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/h/hel/hello/hello__gb_1.mp3"></p>
+                        </div>    
                     </div>
-                </div>
-
-                <div class="extend" id="word-family">
-                    <div class="extend-type" >Word Family</div>
-                    <div class="description">
-                        <div class="detail">
-                            <p class="word-type">(<span class="type">v</span>) <span class="english">hello</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="extend" id="word-description">
-                    <div class="extend-type" >Description</div>
-                    <div class="description">
-                        <div class="detail">
-                            <p class="english">used as a greeting when you see or meet someone</p>
-                            <p class="vietnamese">Xin chào</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="extend" id="word-relationship">
-                    <div class="extend-type">Word relationships</div>
-                    <div class="description">
-                        <div class="synonyms">
-                            <h4>Synonyms</h4>
-                            <div class="detail">
-                                <p class="word english">hi</p>
-                                <p class="examle english">Hi, Gwen – did you have a nice weekend?</p>
+                    <div class="extend examples active" data-index="0">
+                        <div class="extend-type">Examples</div>
+                        <div class="description">
+                            <div class="detail pattern">
+                                <p class="english" data-src="https://d27ucmmhxk51xv.cloudfront.net/media/english/exaProns/p008-001354151.mp3?version=1.1.86">Hello John, how are you?</p>
+                                <p class="vietnamese"></p>
                             </div>
-                            <div class="detail">
-                                <p class="word english">hey</p>
-                                <p class="examle english">Hey, Scott! What’s up, buddy?</p>
+
+                        </div>
+                    </div>
+
+                    <div class="extend word-families non-display" data-index="1">
+                        <div class="extend-type" >Word Family</div>
+                        <div class="description">
+                            <div class="detail pattern">
+                                <p class="word">(<span class="type"></span>) <span class="content"></span></p>
+                                <p class="example"></p>
                             </div>
                         </div>
-                        <div class="opposite">
-                            <h4>Opposite</h4>
-                            <div class="detail">
-                                <p class="word english">goodbye</p>
-                                <p class="examle english">Goodbye!</p>
+                    </div>
+
+                    <div class="extend word-descriptions non-display" data-index="2">
+                        <div class="extend-type" >Description</div>
+                        <div class="description">
+                            <p class="detail pattern"></p>
+                        </div>
+                    </div>
+
+                    <div class="extend word-relationships non-display" data-index="3">
+                        <div class="extend-type">Word relationships</div>
+                        <div class="description">
+                            <div class="detail pattern non-display">
+                                <p class="word english"></p>
+                                <p class="examle english"></p>
+                            </div>
+                            <div class="syn">
+                                <h4>Synonyms</h4>
+
+                            </div>
+                            <div class="opp">
+                                <h4>Opposite</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="slide-nav">
-                <span class="dot active" data-index="0"></span> 
-                <span class="dot" data-index="1"></span> 
-                <span class="dot" data-index="2"></span>
-                <span class="dot" data-index="3"></span>
+            <div class="slide-nav">
+                <span class="dot dot-0 active" data-index="0"></span> 
+                <span class="dot dot-1" data-index="1"></span> 
+                <span class="dot dot-2" data-index="2"></span>
+                <span class="dot dot-3" data-index="3"></span>
             </div>
+
         </div>
     </body>
 </html>

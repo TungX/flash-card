@@ -16,7 +16,7 @@ var options = {
     autoIndex: false,
     useNewUrlParser: true
 };
-var uri = 'mongodb://127.0.0.1/flashcard';
+var uri = 'mongodb://heroku_nsrkjq2k:89jau49iammlhef1n7bm8d3iq7@ds261296.mlab.com:61296/heroku_nsrkjq2k';
 mongoose.connect(uri, options, )
         .then(() => {
             console.log(`Connected database successfully: ${uri}`);
