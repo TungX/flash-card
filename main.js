@@ -17,6 +17,7 @@ var options = {
     useNewUrlParser: true
 };
 var uri = 'mongodb://heroku_nsrkjq2k:89jau49iammlhef1n7bm8d3iq7@ds261296.mlab.com:61296/heroku_nsrkjq2k';
+//var uri = 'mongodb://localhost:27017/flashcard';
 mongoose.connect(uri, options, )
         .then(() => {
             console.log(`Connected database successfully: ${uri}`);
@@ -76,7 +77,7 @@ app.get('/', function (req, res) {
 //    user_id: '5ce3c179d3886f34f9763ef3'
 //});
 
-var server = app.listen(process.env.PORT || 5000, function () {
+var server = app.listen(process.env.PORT || 8081, function () {
     var host = server.address().address;
     var port = server.address().port;
 
