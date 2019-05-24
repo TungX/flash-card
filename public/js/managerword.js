@@ -5,6 +5,7 @@
  */
 var form_method = 'post';
 var word_id = undefined;
+var highlightAtClass = ['examples', 'word-families', 'word-relationships'];
 $(document).ready(function () {
     catchEventAddWordClick();
     catchEventClickAddElement();
@@ -13,7 +14,38 @@ $(document).ready(function () {
     catchEventWordFormSubmit();
     loadWords();
     catchEventEditWordClick();
+    catchEventHighLineTextClick();
 });
+
+function catchEventHighLineTextClick() {
+    $('.btn.highlight').on('click', function () {
+        if (!highlightAtClass.includes($('.nav-item a.active').data('class'))) {
+            return;
+        }
+        if (window.getSelection) {
+            var selection = window.getSelection();
+            if (selection.isCollapsed) {
+                var content = $(selection.baseNode).find('textarea');
+                
+                if (content.length === 1) {
+                    var text = content.val();
+                    var selectionText = selection.toString();
+                    if (selectionText.trim().length === 0)
+                        return;
+                    text = text.replace(selectionText, '<strong>' + selectionText + '</strong>');
+                    content.val(text);
+                }
+            }
+        }
+
+//        else if (document.selection && document.selection.type !== 'Control') {
+//            text = document.selection.createRange().text;
+//        }
+
+
+    });
+}
+
 function catchEventAddWordClick() {
     $('.btn.addword').on('click', function () {
         form_method = 'post';
@@ -117,6 +149,11 @@ function catchEventClickNavItem() {
         $(this).addClass('active');
         var tabClass = $(this).data('class');
         console.log(tabClass);
+        if (highlightAtClass.includes(tabClass)) {
+            $('.btn.highlight').removeClass('non-display');
+        } else {
+            $('.btn.highlight').addClass('non-display');
+        }
         $('#add-word .' + tabClass).removeClass('non-display');
     });
 }
