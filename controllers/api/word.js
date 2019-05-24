@@ -16,6 +16,22 @@ async function getAll(req, res) {
     }
 }
 
+async function getWordLearn(req, res) {
+    try {
+        const userId = 'blue.rose.hut@gmail.com';
+        const words = await Word.find({'user_id': userId});
+        res.send({
+            status: 1,
+            words: words
+        });
+    } catch (e) {
+        res.send({
+            status: 0,
+            message: e.message
+        });
+    }
+}
+
 async function show(req, res) {
     try {
         const id = req.param('id');
@@ -84,5 +100,6 @@ module.exports = {
     show,
     insert,
     update,
+    getWordLearn,
     remove
 };

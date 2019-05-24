@@ -57,7 +57,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
 app.use('/users', require('./routers/user'));
 app.use('/sessions', require('./routers/session'));
 app.use('/words', require('./routers/word'));
