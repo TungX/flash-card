@@ -62,6 +62,7 @@ app.use('/users', require('./routers/user'));
 app.use('/sessions', require('./routers/session'));
 app.use('/words', require('./routers/word'));
 app.use('/api/words', require('./routers/api/word'));
+app.use('/api/practices', require('./routers/api/practice'));
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/public/" + "learn.html");

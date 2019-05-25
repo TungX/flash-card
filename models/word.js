@@ -16,7 +16,42 @@ const pronunciationSchema = new mongoose.Schema(
             }
         }
 );
+const answerSchema = new mongoose.Schema({
+    content: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    type: Boolean
 
+});
+const questionSchema = new mongoose.Schema({
+    content: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    type: {
+        type: String,
+        enum: ['fill_blank_by_type',
+            'fill_blank_by_choose',
+            'select_word_from_desciption',
+            'type_word_from_desciption',
+            'listen_word',
+            'listen_sentence',
+            'speak_word',
+            'speak_sentence'
+        ]
+    },
+    skill: {
+        type: String,
+        enum: ['reading', 'writing', 'listening', 'speaking']
+    },
+    answers: {
+        type: [answerSchema],
+        default: []
+    }
+});
 const relationSchema = new mongoose.Schema(
         {
             content: {
@@ -121,7 +156,12 @@ const wordSchema = new mongoose.Schema(
             word_families: {
                 type: [familySchema],
                 default: []
+            },
+            questions: {
+                type: [questionSchema],
+                default: []
             }
+
         },
         {
             timestamps: true

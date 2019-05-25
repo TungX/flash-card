@@ -76,9 +76,9 @@ async function insert(req, res) {
 async function update(req, res) {
     let id = req.param('id');
     let wordInfo = req.body;
-    
+
     try {
-        const word = await Word.updateOne({ _id: id }, wordInfo);
+        const word = await Word.updateOne({_id: id}, wordInfo);
         res.send({
             status: 1,
             id: word._id
