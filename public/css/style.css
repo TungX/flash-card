@@ -45,18 +45,22 @@ and open the template in the editor.
     position: relative;
     overflow-x: hidden;
 }
+
 .slide {
     position: absolute;
     width: 100%;
     height: 100%;
 }
+
 #wrapper .extend .description {
     height: calc(100vh - 230px);
     overflow-y: scroll;
 }
-.slide-content{
+
+.slide-content {
     position: relative;
 }
+
 .slide-content p {
     padding-left: 10px;
     padding-right: 10px;
@@ -133,9 +137,10 @@ and open the template in the editor.
     border-bottom: solid #bbb 1px;
 }
 
-.word-relationships .examle{
+.word-relationships .examle {
     font-style: italic;
 }
+
 #wrapper .extend {
     position: absolute;
     width: 100%;
@@ -190,7 +195,27 @@ and open the template in the editor.
     /*border: solid 1px red;*/
 }
 
-table#words ul, table#words ol{
+table#words ul,
+table#words ol {
     padding-left: 10px;
     margin-left: 5px;
+}
+
+.practice .answers {}
+
+.practice .choose .answers .content {
+    width: 40%;
+    border: solid 1px black;
+    display: inline-table;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.practice .choose .answers .content.right {
+    margin-right: 10px;
+    float: right;
+}
+
+.practice .choose .answers .content.left {
+    margin-left: 10px;
 }
