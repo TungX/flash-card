@@ -16,8 +16,8 @@ var options = {
     autoIndex: false,
     useNewUrlParser: true
 };
-//var uri = 'mongodb://heroku_nsrkjq2k:89jau49iammlhef1n7bm8d3iq7@ds261296.mlab.com:61296/heroku_nsrkjq2k';
-var uri = 'mongodb://localhost:27017/flashcard';
+var uri = 'mongodb://heroku_nsrkjq2k:89jau49iammlhef1n7bm8d3iq7@ds261296.mlab.com:61296/heroku_nsrkjq2k';
+//var uri = 'mongodb://localhost:27017/flashcard';
 mongoose.connect(uri, options, )
         .then(() => {
             console.log(`Connected database successfully: ${uri}`);
