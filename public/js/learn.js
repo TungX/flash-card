@@ -60,9 +60,9 @@ function loadWord() {
                 setPractice(practices[i], element);
                 $('#wrapper').append(element);
             }
-            $('.slide.slide-0').css({'left': '-100%'});
-            $('.slide.slide-6').css({'left': '0%'});
-            $('.slide.slide-6').addClass('active');            
+            //$('.slide.slide-0').css({'left': '-100%'});
+            //$('.slide.slide-6').css({'left': '0%'});
+            $('.slide.slide-0').addClass('active');            
             catchEventChooseDot();
             catchEventClickAudioIcon();
             catchEventClickEnglish();
