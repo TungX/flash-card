@@ -3,7 +3,7 @@ const Word = require('../../models/word');
 async function getAll(req, res) {
     try {
         const userId = 'blue.rose.hut@gmail.com';
-        const words = await Word.find({ 'user_id': userId });
+        const words = await Word.find({'user_id': userId});
         res.send({
             status: 1,
             words: words
@@ -19,7 +19,7 @@ async function getAll(req, res) {
 async function getWordLearn(req, res) {
     try {
         const userId = 'blue.rose.hut@gmail.com';
-        const words = await Word.find({ 'user_id': userId });
+        const words = await Word.find({'user_id': userId});
         const practices = [];
         for (let i = 0; i < words.length; i++) {
             for (let j = 0; j < words[i].questions.length; j++) {
@@ -48,7 +48,7 @@ async function show(req, res) {
     try {
         const id = req.param('id');
         const userId = 'blue.rose.hut@gmail.com';
-        const word = await Word.findOne({ 'user_id': userId, '_id': id });
+        const word = await Word.findOne({'user_id': userId, '_id': id});
         if (word === null)
             res.send({
                 status: 0,
@@ -90,7 +90,7 @@ async function update(req, res) {
     let wordInfo = req.body;
 
     try {
-        const word = await Word.updateOne({ _id: id }, wordInfo);
+        const word = await Word.updateOne({_id: id}, wordInfo);
         res.send({
             status: 1,
             id: word._id

@@ -129,7 +129,7 @@ and open the template in the editor.
 }
 
 .non-display {
-    display: none;
+    display: none !important;
 }
 
 .word-relationship h4 {
@@ -201,7 +201,9 @@ table#words ol {
     margin-left: 5px;
 }
 
-.practice .answers {}
+.practice .answers {
+    margin-top: 35px;
+}
 
 .practice .choose .answers .content {
     width: 40%;
@@ -238,18 +240,20 @@ button.check-and-next{
     width: 100%;
 }
 
-.answer .token{
-    
+.sort .answers p{
+    line-height: 2.5em;
 }
 
-ul.inline {
-    list-style-position: inside;
-    padding: 0;
-    margin: 0;
+.sort .answers .token{
+    background-color: greenyellow;
+    padding: 5px;
+    cursor: pointer;
 }
 
-ul.inline li {
-    display: inline-block;
-    vertical-align: top;
-    margin: 10px;
+.answers .answer-area, .answers .tokens-area {
+    min-height: 2em;
+}
+
+.answers .tokens-area {
+    background-color: #bbb;
 }
