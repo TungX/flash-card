@@ -8,6 +8,8 @@ var extensions = ['.active .examples', '.active .word-families', '.active .word-
 $(document).ready(function() {
     loadWord();
     catchEventMoveSlide();
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
 });
 
 function loadWord() {

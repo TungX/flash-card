@@ -6,115 +6,124 @@ and open the template in the editor.
 -->
 <html>
 
-<head>
-    <title>Learning</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/jquery.mobile-1.4.5.min.css" />
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="/js/learn.js?v1"></script>
+    <head>
+        <title>Learning</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="/css/draganddrop.css" />
+        <script src="/js/jquery-1.11.1.min.js"></script>
+        <script src="/js/jquery.mobile-1.4.5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+        <script src="/js/draganddrop.js"></script>
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="/js/learn.js?v1"></script>
 
-</head>
+    </head>
 
-<body>
-    <audio class="non-display" controls></audio>
-    <div id="wrapper">
-        <div class="slide learning pattern non-display">
-            <div class="slide-content ">
-                <div class="word-info">
-                    <p class="word"><span class="content">hello</span> <span class="type">vert</span></p>
-                    <div class="pronc pattern">
-                        <p><span class="content">/həˈləʊ/</span> (<span class="dialect">BrE</span>)<img src="imgs/volume-24-512.png" data-src="https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/h/hel/hello/hello__gb_1.mp3"></p>
-                    </div>
-                </div>
-                <div class="extend examples active" data-index="0">
-                    <div class="extend-type">Examples</div>
-                    <div class="description">
-                        <div class="detail pattern">
-                            <p class="english" data-src="https://d27ucmmhxk51xv.cloudfront.net/media/english/exaProns/p008-001354151.mp3?version=1.1.86">Hello John, how are you?</p>
-                            <p class="vietnamese"></p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="extend word-families non-display" data-index="1">
-                    <div class="extend-type">Word Family</div>
-                    <div class="description">
-                        <div class="detail pattern">
-                            <p class="word">(<span class="type"></span>) <span class="content"></span></p>
-                            <p class="example"></p>
+    <body>
+        <audio class="non-display" controls></audio>
+        <div id="wrapper">
+            <div class="slide learning pattern non-display">
+                <div class="slide-content ">
+                    <div class="word-info">
+                        <p class="word"><span class="content">hello</span> <span class="type">vert</span></p>
+                        <div class="pronc pattern">
+                            <p><span class="content">/həˈləʊ/</span> (<span class="dialect">BrE</span>)<img src="imgs/volume-24-512.png" data-src="https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/h/hel/hello/hello__gb_1.mp3"></p>
                         </div>
                     </div>
-                </div>
+                    <div class="extend examples active" data-index="0">
+                        <div class="extend-type">Examples</div>
+                        <div class="description">
+                            <div class="detail pattern">
+                                <p class="english" data-src="https://d27ucmmhxk51xv.cloudfront.net/media/english/exaProns/p008-001354151.mp3?version=1.1.86">Hello John, how are you?</p>
+                                <p class="vietnamese"></p>
+                            </div>
 
-                <div class="extend word-descriptions non-display" data-index="2">
-                    <div class="extend-type">Description</div>
-                    <div class="description">
-                        <p class="detail pattern"></p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="extend word-relationships non-display" data-index="3">
-                    <div class="extend-type">Word relationships</div>
-                    <div class="description">
-                        <div class="detail pattern non-display">
-                            <p class="word english"></p>
-                            <p class="examle english"></p>
+                    <div class="extend word-families non-display" data-index="1">
+                        <div class="extend-type">Word Family</div>
+                        <div class="description">
+                            <div class="detail pattern">
+                                <p class="word">(<span class="type"></span>) <span class="content"></span></p>
+                                <p class="example"></p>
+                            </div>
                         </div>
-                        <div class="syn">
-                            <h4>Synonyms</h4>
+                    </div>
 
+                    <div class="extend word-descriptions non-display" data-index="2">
+                        <div class="extend-type">Description</div>
+                        <div class="description">
+                            <p class="detail pattern"></p>
                         </div>
-                        <div class="opp">
-                            <h4>Opposite</h4>
+                    </div>
+
+                    <div class="extend word-relationships non-display" data-index="3">
+                        <div class="extend-type">Word relationships</div>
+                        <div class="description">
+                            <div class="detail pattern non-display">
+                                <p class="word english"></p>
+                                <p class="examle english"></p>
+                            </div>
+                            <div class="syn">
+                                <h4>Synonyms</h4>
+
+                            </div>
+                            <div class="opp">
+                                <h4>Opposite</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="slide-nav">
-            <span class="dot dot-0 active" data-index="0"></span>
-            <span class="dot dot-1" data-index="1"></span>
-            <span class="dot dot-2" data-index="2"></span>
-            <span class="dot dot-3" data-index="3"></span>
-        </div>
-        <div class="slide pattern practice">
-            <div class="slide-content ">
-                <div class="choose pattern">
-                    <div class="question">
-                        <p class="content">The ___ is coming to give you an injection.</p>
+            <div class="slide-nav">
+                <span class="dot dot-0 active" data-index="0"></span>
+                <span class="dot dot-1" data-index="1"></span>
+                <span class="dot dot-2" data-index="2"></span>
+                <span class="dot dot-3" data-index="3"></span>
+            </div>
+            <div class="slide pattern practice">
+                <div class="slide-content ">
+                    <div class="choose pattern non-display">
+                        <div class="question">
+                            <p class="content">The ___ is coming to give you an injection.</p>
+                            <img src="" class="non-display">
+                        </div>
+                        <div class="answers">
+                            <div class="content left" data-type="true">(n) nurse</div>
+                            <div class="content right" data-type="false">(n) dictionary</div>
+                            <div class="content left" data-type="false">(n) animal</div>
+                            <div class="content right" data-type="false">(adj) giant</div>
+                        </div>
                     </div>
-                    <div class="answers">
-                        <div class="content left" data-type="true">(n) nurse</div>
-                        <div class="content right" data-type="false">(n) dictionary</div>
-                        <div class="content left" data-type="false">(n) animal</div>
-                        <div class="content right" data-type="false">(adj) giant</div>
+                    <div class="type pattern non-display">
+                        <div class="question">
+                            <p class="content">The ___ is coming to give you an injection.</p>
+                        </div>
+                        <div class="answers">
+                            <input class="" autofocus>
+                        </div>
                     </div>
-                </div>
-                <div class="type pattern non-display">
-                    <div class="question">
-                        <p class="content"></p>
+                    <div class="sort pattern ">
+                        <div class="question">
+                            <p class="content">Listen and sort words.</p>
+                            <img src="imgs/speaker-2488096_960_720.png">
+                        </div>
+                        <div class="answers">
+                            <!--<ul class="inline sortable dragaware"><li class="token">The</li> <li class="token">nurse</li> <li class="token">is</li> <li class="token">coming</li> <li class="token">to</li> <li class="token">give</li> <li class="token">you</li> <li class="token">an</li> <li class="token">injection</li></ul>-->
+                            <ul id="sortable" class="inline">
+                                <li class="token">The</li> <li class="token">nurse</li> <li class="token">is</li> <li class="token">coming</li> <li class="token">to</li> <li class="token">give</li> <li class="token">you</li> <li class="token">an</li> <li class="token">injection</li>  </ul>
+                        </div>
+
                     </div>
-                    <div class="answers">
-                        <input class="">
-                    </div>
-                </div>
-                <div class="sort pattern non-display">
-                    <div class="question">
-                        <img>
-                    </div>
-                    <div class="answer">
-                        <span class="token"></span>
-                    </div>
+
                 </div>
             </div>
+
+            <button class="check-and-next">Check and next</button>
         </div>
-
-
-    </div>
-</body>
+    </body>
 
 </html>
