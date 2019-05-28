@@ -19,40 +19,48 @@ $(document).ready(function () {
     loadWord();
     catchEventMoveSlide();
     catchEventCheckClick();
-    catchEventMicroClick();
+    catchEventYesClick();
+    catchEventNoClick();
 });
-
+var recognition;
 function catchEventMicroClick() {
     $('.micro').on('click', function () {
         if (!('webkitSpeechRecognition' in window)) {
             alert('brower non support speech to text');
         } else {
-            window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-            var finalTranscript = '';
-            var recognition = new window.SpeechRecognition();
-            recognition.lang = "en-US";
-            recognition.interimResults = true;
-            recognition.maxAlternatives = 10;
-            recognition.continuous = true;
-            recognition.onresult = function (event) {
-                var interim_transcript = '';
-                if (typeof (event.results) === 'undefined') {
-                    recognition.onend = null;
-                    recognition.stop();
-                    upgrade();
-                    return;
-                }
-                for (var i = event.resultIndex; i < event.results.length; ++i) {
-                    if (event.results[i].isFinal) {
-                        final_transcript += event.results[i][0].transcript;
-                    } else {
-                        interim_transcript += event.results[i][0].transcript;
-                    }
-                }
-                final_transcript = capitalize(final_transcript);
-                alert(final_transcript);
-            };
+            if ($(this).data('status') === 'running') {
+                $(this).data('status', 'stoped');
 
+                $(this)[0].src = "/imgs/microphone-2104091_960_720.png";
+                if (recognition) {
+                    recognition.stop();
+                }
+                return;
+            }
+            $(this)[0].src = "/imgs/BitesizedDevotedIbizanhound-small.gif";
+            $(this).data('status', 'running');
+            window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+            if (!recognition) {
+                recognition = new window.SpeechRecognition();
+                recognition.lang = "en-US";
+                recognition.interimResults = true;
+                recognition.maxAlternatives = 10;
+                recognition.continuous = true;
+                recognition.onresult = function (event) {
+                    if (typeof (event.results) === 'undefined') {
+                        recognition.onend = null;
+                        recognition.stop();
+                        return;
+                    }
+                    for (var i = event.resultIndex; i < event.results.length; ++i) {
+                        if (event.results[i].isFinal) {
+                            $('.slide.active .speak .answer-area').html(capitalize(event.results[i][0].transcript));
+                        }
+                    }
+                    recognition.stop();
+                    $(this)[0].src = "/imgs/microphone-2104091_960_720.png";
+                };
+            }
             recognition.start();
         }
     });
@@ -81,24 +89,27 @@ function loadWord() {
                 alert("words is empty");
                 return;
             }
-            words = [];
-//             for (var i = 0; i < words.length; i++) {
-//                 var element = $('.slide.learning.pattern').clone().removeClass('pattern').removeClass('non-display').removeClass('active');
-//                 element.addClass('slide-' + i);
-//                 element.data('index', i);
-//                 element.css({ 'left': i * 100 + '%' });
-//                 setInfoWord(words[i], element);
-//                 $('#wrapper').append(element);
-//             }
-//             if (words.length > 0)
-//                 $('.slide.slide-0').addClass('active');
+//            words = [];
+            for (var i = 0; i < words.length; i++) {
+                var element = $('.slide.learning.pattern').clone().removeClass('pattern').removeClass('non-display').removeClass('active');
+                element.addClass('slide-' + i);
+                element.data('index', i);
+                if (i === 0)
+                    element.css({'left': '0%'});
+                else
+                    element.css({'left': '100%'});
+                setInfoWord(words[i], element);
+                $('#wrapper').append(element);
+            }
+//            if (words.length > 0)
+//                $('.slide.slide-0').addClass('active');
 
             var practices = response.practices;
             for (var i = 0; i < practices.length; i++) {
                 var element = $('.slide.practice.pattern').clone().removeClass('pattern').removeClass('non-display').removeClass('active');
                 element.addClass('slide-' + (words.length + i));
                 element.data('index', (words.length + i));
-                if (i === 0) {
+                if ((i + words.length) === 0) {
                     element.css({'left': '0%'});
                 } else {
                     element.css({'left': '100%'});
@@ -106,9 +117,14 @@ function loadWord() {
                 setPractice(practices[i], element);
                 $('#wrapper').append(element);
             }
-            $('.slide.slide-0').css({'left': '-100%'});
-            $('.slide.slide-6').css({'left': '0%'});
-            $('.slide.slide-6').addClass('active');
+//            $('.slide.slide-0').css({'left': '-100%'});
+//            $('.slide.slide-6').css({'left': '0%'});
+            if ($('.slide.slide-0').length)
+                $('.slide.slide-0').addClass('active');
+            if (words.length)
+                $('.check-and-next').addClass('non-display');
+            else
+                $('.slide-nav').addClass('non-display');
             catchEventChooseDot();
             catchEventClickAudioIcon();
             catchEventClickEnglish();
@@ -151,6 +167,41 @@ function catchEventChooseAnswer() {
 }
 function catchEventCheckClick() {
     $('.check-and-next').on('click', function () {
+        console.log('check click');
+        if ($(this).data('status') === 'next') {
+            nextPractice();
+        } else {
+            if ($('.slide.active .group.type').length) {
+                $('.slide.active .group.type input').val($('.slide.active .group.type input').data('answer'));
+                $('.slide.active .group.type .ui-input-text').css({'border-color': 'red'});
+            } else if ($('.slide.active .group.choose').length) {
+                var answers = $('.slide.active .group.choose .answers .content');
+                for (var i = 0; i < answers.length; i++) {
+                    if ($(answers[i]).hasClass('pattern')) {
+                        continue;
+                    }
+                    if ($(answers[i]).data('type')) {
+                        $(answers[i]).css({'border-color': 'red'});
+                        break;
+                    }
+                }
+            } else if ($('.slide.active .group.sort').length) {
+                console.log('sort');
+                if ($('.slide.active .answer-area').text().trim() === $('.slide.active .answer-area').data('answer')) {
+                    setTimeout(nextPractice, 500);
+                } else {
+                    $('.slide.active .group.sort .message').html($('.slide.active .answer-area').data('answer'));
+                }
+            } else if ($('.slide.active .group.listen-and-type').length) {
+                console.log('listen-and-type');
+                $('.slide.active .group.listen-and-type input').val($('.slide.active .group.listen-and-type input').data('answer'));
+                $('.slide.active .group.listen-and-type .ui-input-text').css({'border-color': 'red'});
+            } else if ($('.slide.active .group.speak').length) {
+                console.log('speak');
+            }
+            $('.check-and-next').html('Next');
+            $('.check-and-next').data('status', 'next');
+        }
     });
 }
 function nextPractice() {
@@ -160,6 +211,8 @@ function nextPractice() {
         $('.slide.slide-' + (index + 1)).animate({'left': '0%'});
         $('.slide.active').removeClass('active');
         $('.slide.slide-' + (index + 1)).addClass('active');
+        $('.check-and-next').html('Check');
+        $('.check-and-next').data('status', 'check');
     }
     catchEventChooseAnswer();
     catchEventTypeAnswer();
@@ -184,7 +237,6 @@ function setPractice(val, element) {
         case 'speak':
             setSpeakQuestion(val, element);
             break;
-
     }
 }
 
@@ -194,8 +246,6 @@ function setSpeakQuestion(val, element) {
     group.find('.question img').data('src', val.content);
     element.find('.slide-content').append(group);
 }
-
-
 
 function setChooseQuestion(val, element) {
     var group = $('.practice-groups .choose').clone();
@@ -278,7 +328,7 @@ function catchEventSelectToken() {
         }
     });
 }
-
+var moveSlideEnable = true;
 function catchEventMoveSlide() {
     var mouseDown = false;
     var mouseXStart = 0;
@@ -289,6 +339,9 @@ function catchEventMoveSlide() {
         mouseYStart = e.clientY;
     });
     $('#wrapper').on('vmouseup', function (e) {
+        if (!moveSlideEnable) {
+            return;
+        }
         var distance = e.clientX - mouseXStart;
         if (Math.abs(distance) > 20 && Math.abs(e.clientY - mouseYStart) < Math.abs(distance)) {
             if (distance < 0) {
@@ -331,7 +384,34 @@ function nextScreen() {
         $('.slide.active').removeClass('active');
         $('.slide.slide-' + (index + 1)).addClass('active');
         selectSlideItem(0);
+    } else {
+        $('.slide.active').animate({'left': '-100%'});
+        $('.slide.question-want-practice').animate({'left': '0%'});
     }
+}
+
+function catchEventYesClick() {
+    $('.slide.question-want-practice .yes').on('click', function () {
+        var index = $('.slide.active').data('index');
+        $('.slide.slide-' + (index + 1)).animate({'left': '0%'});
+        $('.slide.question-want-practice').animate({'left': '-100%'});
+        $('.slide.active').removeClass('active');
+        $('.slide.slide-' + (index + 1)).addClass('active');
+        moveSlideEnable = false;
+        catchEventSelectToken();
+        catchEventTypeAnswer();
+        catchEventChooseAnswer();
+        $('.check-and-next').removeClass('non-display');
+        $('.slide-nav').addClass('non-display');
+    });
+}
+
+function catchEventNoClick() {
+    $('.slide.question-want-practice .no').on('click', function () {
+        $('.slide.question-want-practice').animate({'left': '100%'});
+        $('.slide.active').animate({'left': '0%'});
+        selectSlideItem(0);
+    });
 }
 
 function prevScreen() {

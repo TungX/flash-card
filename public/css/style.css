@@ -38,7 +38,8 @@ and open the template in the editor.
 #wrapper {
     width: 100%;
     max-width: 480px;
-    min-height: calc(100vh - 60px);
+    min-height: 500px;
+    height: calc(100vh - 60px);
     border: solid 1px black;
     margin-left: auto;
     margin-right: auto;
@@ -251,6 +252,7 @@ button.check-and-next{
 
 .answers .answer-area, .answers .tokens-area {
     min-height: 2em;
+    border: solid 1px #bbb;
 }
 
 .answers .tokens-area {
@@ -262,4 +264,23 @@ button.check-and-next{
     margin-left: auto;
     margin-right: auto;
     width: 100px;   
+}
+
+.answers .answer-area {
+    border: solid 1px #0df90d;
+    min-height: 2em;
+}
+.slide.question-want-practice{
+    left: 100%;
+}
+.question-want-practice h3{
+    text-align: center;
+}
+
+.question-want-practice .yes{
+    background-color: greenyellow;
+}
+
+.question-want-practice .no{
+    background-color: #e05b5b;
 }
