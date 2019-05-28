@@ -13,6 +13,7 @@ var form_types = {'fill_blank_by_type': 'type',
     'speak_word': 'speak',
     'speak_sentence': 'speak'};
 var recognition;
+var final_transcript = '';
 $(document).ready(function () {
     console.log('document on ready');
     loadWord();
@@ -21,36 +22,46 @@ $(document).ready(function () {
     catchEventMicroClick();
 });
 
-function catchEventMicroClick() {    
+function catchEventMicroClick() {
     $('.micro').on('click', function () {
-        alert('micro click');
         if (!('webkitSpeechRecognition' in window)) {
             alert('brower non support speech to text');
         } else {
-            alert('init speech recognition');
             window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
             var finalTranscript = '';
             var recognition = new window.SpeechRecognition();
+            recognition.lang = "en-US";
             recognition.interimResults = true;
             recognition.maxAlternatives = 10;
             recognition.continuous = true;
             recognition.onresult = function (event) {
-                console.log(event.results);
-                var interimTranscript = '';
-                for (var i = event.resultIndex, len = event.results.length; i < len; i++) {
-                    var transcript = event.results[i][0].transcript;
+                var interim_transcript = '';
+                if (typeof (event.results) === 'undefined') {
+                    recognition.onend = null;
+                    recognition.stop();
+                    upgrade();
+                    return;
+                }
+                for (var i = event.resultIndex; i < event.results.length; ++i) {
                     if (event.results[i].isFinal) {
-                        finalTranscript += transcript;
+                        final_transcript += event.results[i][0].transcript;
                     } else {
-                        interimTranscript += transcript;
+                        interim_transcript += event.results[i][0].transcript;
                     }
                 }
-                alert(interimTranscript);
+                final_transcript = capitalize(final_transcript);
+                alert(final_transcript);
             };
 
             recognition.start();
-
         }
+    });
+}
+
+var first_char = /\S/;
+function capitalize(s) {
+    return s.replace(first_char, function (m) {
+        return m.toUpperCase();
     });
 }
 
