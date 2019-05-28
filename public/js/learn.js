@@ -10,14 +10,49 @@ var form_types = {'fill_blank_by_type': 'type',
     'type_word_from_desciption': 'type',
     'listen_word': 'listen-and-type',
     'listen_sentence': 'sort',
-    'speak_word': 'listen-and-type',
-    'speak_sentence': 'listen-and-type'};
+    'speak_word': 'speak',
+    'speak_sentence': 'speak'};
+var recognition;
 $(document).ready(function () {
     console.log('document on ready');
     loadWord();
     catchEventMoveSlide();
     catchEventCheckClick();
+    catchEventMicroClick();
 });
+
+function catchEventMicroClick() {    
+    $('.micro').on('click', function () {
+        alert('micro click');
+        if (!('webkitSpeechRecognition' in window)) {
+            alert('brower non support speech to text');
+        } else {
+            alert('init speech recognition');
+            window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+            var finalTranscript = '';
+            var recognition = new window.SpeechRecognition();
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 10;
+            recognition.continuous = true;
+            recognition.onresult = function (event) {
+                console.log(event.results);
+                var interimTranscript = '';
+                for (var i = event.resultIndex, len = event.results.length; i < len; i++) {
+                    var transcript = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        finalTranscript += transcript;
+                    } else {
+                        interimTranscript += transcript;
+                    }
+                }
+                alert(interimTranscript);
+            };
+
+            recognition.start();
+
+        }
+    });
+}
 
 function loadWord() {
     if ($('#wrapper .learning').length !== 1) {
@@ -60,15 +95,16 @@ function loadWord() {
                 setPractice(practices[i], element);
                 $('#wrapper').append(element);
             }
-            //$('.slide.slide-0').css({'left': '-100%'});
-            //$('.slide.slide-6').css({'left': '0%'});
-            $('.slide.slide-0').addClass('active');            
+            $('.slide.slide-0').css({'left': '-100%'});
+            $('.slide.slide-6').css({'left': '0%'});
+            $('.slide.slide-6').addClass('active');
             catchEventChooseDot();
             catchEventClickAudioIcon();
             catchEventClickEnglish();
             catchEventSelectToken();
             catchEventTypeAnswer();
             catchEventChooseAnswer();
+            catchEventMicroClick();
         }
     }).fail(function (e) {
         alert("Has error when load words");
@@ -134,9 +170,21 @@ function setPractice(val, element) {
         case 'listen-and-type':
             setListenAndTypeQuestion(val, element);
             break;
+        case 'speak':
+            setSpeakQuestion(val, element);
+            break;
 
     }
 }
+
+function setSpeakQuestion(val, element) {
+    var group = $('.practice-groups .speak').clone();
+    group.find('.question .content').html(val.answers[0].content);
+    group.find('.question img').data('src', val.content);
+    element.find('.slide-content').append(group);
+}
+
+
 
 function setChooseQuestion(val, element) {
     var group = $('.practice-groups .choose').clone();

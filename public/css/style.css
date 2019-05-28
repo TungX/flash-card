@@ -49,7 +49,6 @@ and open the template in the editor.
 .slide {
     position: absolute;
     width: 100%;
-    height: 100%;
 }
 
 #wrapper .extend .description {
@@ -256,4 +255,11 @@ button.check-and-next{
 
 .answers .tokens-area {
     background-color: #bbb;
+}
+
+.answers img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;   
 }
