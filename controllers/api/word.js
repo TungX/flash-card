@@ -23,6 +23,7 @@ async function getWordLearn(req, res) {
         const practices = [];
         for (let i = 0; i < words.length; i++) {
             for (let j = 0; j < words[i].questions.length; j++) {
+                words[i].questions[j]['word_id'] = words[i]._id;
                 practices.push(words[i].questions[j]);
             }
             words[i].questions = undefined;

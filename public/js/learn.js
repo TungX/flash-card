@@ -72,7 +72,28 @@ function capitalize(s) {
         return m.toUpperCase();
     });
 }
+function success() {
+    var wordId = $('.slide.active').data('word_id');
+    if (wordId) {
+        var skill = $('.slide.active').data('skill');
+        var data = {'word_id': wordId, 'status': true, 'skill': skill};
+    }
+    $.ajax({
+        method: "PUT",
+        url: "/api/practices",
+        data: data
+    }).done(function (response) {
+        console.log(response);
+    }).fail(function (e) {
+        alert("Update status of practice fail");
+    });
 
+    setTimeout(nextPractice, 500);
+}
+
+function fail() {
+
+}
 function loadWord() {
     if ($('#wrapper .learning').length !== 1) {
         return;
@@ -150,7 +171,7 @@ function catchEventTypeAnswer() {
         if (ans === value) {
             $(this).parent('.ui-input-text').css({'border-color': 'greenyellow'});
             //next sentence
-            setTimeout(nextPractice, 500);
+            success();
         }
     });
 }
@@ -159,7 +180,7 @@ function catchEventChooseAnswer() {
     $('.slide.active .answers .content').on('click', function (e) {
         if ($(this).data('type')) {
             $(this).css({'background-color': 'greenyellow'});
-            setTimeout(nextPractice, 500);
+            success();
         } else {
             $(this).css({'background-color': '#ffa4a4'});
         }
@@ -188,14 +209,16 @@ function catchEventCheckClick() {
             } else if ($('.slide.active .group.sort').length) {
                 console.log('sort');
                 if ($('.slide.active .answer-area').text().trim() === $('.slide.active .answer-area').data('answer')) {
-                    setTimeout(nextPractice, 500);
+                    success();
                 } else {
                     $('.slide.active .group.sort .message').html($('.slide.active .answer-area').data('answer'));
+                    fail();
                 }
             } else if ($('.slide.active .group.listen-and-type').length) {
                 console.log('listen-and-type');
                 $('.slide.active .group.listen-and-type input').val($('.slide.active .group.listen-and-type input').data('answer'));
                 $('.slide.active .group.listen-and-type .ui-input-text').css({'border-color': 'red'});
+                fail();
             } else if ($('.slide.active .group.speak').length) {
                 console.log('speak');
             }
@@ -220,6 +243,8 @@ function nextPractice() {
 }
 
 function setPractice(val, element) {
+    element.data('word_id', val.word_id);
+    element.data('skill', val.skill);
     var form_type = form_types[val.type];
     switch (form_type) {
         case 'choose':
@@ -323,7 +348,7 @@ function catchEventSelectToken() {
         $(this).parents('.answers').find(toggleClass).append($(this)).append(' ');
         if ($('.slide.active .tokens-area .token:visible').length === 0) {
             if ($('.slide.active .answer-area').text().trim() === $('.slide.active .answer-area').data('answer')) {
-                setTimeout(nextPractice, 500);
+                success();
             }
         }
     });
@@ -351,11 +376,6 @@ function catchEventMoveSlide() {
             }
         }
     });
-
-    //    $('#wrapper').on('vmousemove', function (e) {
-    //        if (mouseDown && (new Date()).getTime() - timeStart > 300)
-    //            console.log('move: ' + e.clientX);
-    //    });
 }
 
 function nextSlide() {

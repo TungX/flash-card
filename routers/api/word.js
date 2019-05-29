@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const controller = require('../../controllers/api/word');
 router.get('/learn', controller.getWordLearn);
-router.get('/practice', controller.getWordLearn);
 router.get('/:id', controller.show);
 router.get('/', controller.getAll);
 router.post('/', controller.insert);
