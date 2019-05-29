@@ -160,8 +160,25 @@ const wordSchema = new mongoose.Schema(
             questions: {
                 type: [questionSchema],
                 default: []
+            },
+            scope: {
+                type: Number,
+                default: 0.0
+            },
+            number_study_times: {
+                type: Number,
+                default: 0
+            },
+            number_success_times: {
+                type: Number,
+                default: 0
+            },
+            skills: {
+                'reading': {type: Number, default: 0},
+                'writing': {type: Number, default: 0},
+                'listening': {type: Number, default: 0},
+                'speaking': {type: Number, default: 0}
             }
-
         },
         {
             timestamps: true

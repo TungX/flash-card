@@ -23,14 +23,20 @@ async function getWordLearn(req, res) {
         const practices = [];
         for (let i = 0; i < words.length; i++) {
             for (let j = 0; j < words[i].questions.length; j++) {
-                words[i].questions[j]['word_id'] = words[i]._id;
-                practices.push(words[i].questions[j]);
+                const question = words[i].questions[j].toJSON();
+                question['word_id'] = words[i]._id;
+                question['_id'] = undefined;
+                practices.push(question);
             }
             words[i].questions = undefined;
             words[i]['user_id'] = undefined;
+            words[i]['scope'] = undefined;
             words[i]['createdAt'] = undefined;
             words[i]['updatedAt'] = undefined;
             words[i]['__v'] = undefined;
+            words[i]['skills'] = undefined;
+            words[i]['number_study_times'] = undefined;
+            words[i]['number_success_times'] = undefined;
         }
         res.send({
             status: 1,
