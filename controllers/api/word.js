@@ -18,30 +18,60 @@ async function getAll(req, res) {
 
 async function getWordLearn(req, res) {
     try {
+        const page = 0;
+        const wordPerPage = 5;
         const userId = 'blue.rose.hut@gmail.com';
-        const words = await Word.find({'user_id': userId});
+        const words = await Word.find({'user_id': userId}, {},
+                {limit: wordPerPage, skip: wordPerPage * page, sort: {scope: 1}});
+        const wordToLearns = [];
         const practices = [];
         for (let i = 0; i < words.length; i++) {
-            for (let j = 0; j < words[i].questions.length; j++) {
-                const question = words[i].questions[j].toJSON();
-                question['word_id'] = words[i]._id;
+            const word = words[i].toJSON();
+            const skills = {};
+            skills['reading'] = [];
+            skills['writing'] = [];
+            skills['listening'] = [];
+            skills['speaking'] = [];
+            for (let j = 0; j < word.questions.length; j++) {
+                const question = word.questions[j];
+                question['word_id'] = word._id;
                 question['_id'] = undefined;
-                practices.push(question);
+                skills[question.skill].push(question);
             }
-            words[i].questions = undefined;
-            words[i]['user_id'] = undefined;
-            words[i]['scope'] = undefined;
-            words[i]['createdAt'] = undefined;
-            words[i]['updatedAt'] = undefined;
-            words[i]['__v'] = undefined;
-            words[i]['skills'] = undefined;
-            words[i]['number_study_times'] = undefined;
-            words[i]['number_success_times'] = undefined;
+            let sum = 0;
+            const rate = [];
+            Object.keys(word.skills).forEach(function (key) {
+                sum += word.skills[key];
+                rate.push(key);
+            });
+            rate[0] = rate[0] / sum;
+            for (let k = 1; k < rate.length; k++) {
+                rate[k] = rate[k - 1] + rate[k] / sum;
+            }
+            
+            for(let w = 0; w < 4; w++){
+                
+            }
+
+            words[i]['number_study_times'] = words[i]['number_study_times'] + 1;
+            words[i]['scope'] = words[i]['number_success_times'] / words[i]['number_study_times'];
+            words[i].save();
+            word.questions = undefined;
+            word['user_id'] = undefined;
+            word['scope'] = undefined;
+            word['createdAt'] = undefined;
+            word['updatedAt'] = undefined;
+            word['__v'] = undefined;
+            word['skills'] = undefined;
+            word['number_study_times'] = undefined;
+            word['number_success_times'] = undefined;
+            wordToLearns.push(word);
         }
+
         res.send({
             status: 1,
             practices: practices,
-            words: words
+            words: wordToLearns
         });
     } catch (e) {
         res.send({

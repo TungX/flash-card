@@ -174,10 +174,10 @@ const wordSchema = new mongoose.Schema(
                 default: 0
             },
             skills: {
-                'reading': {type: Number, default: 0},
-                'writing': {type: Number, default: 0},
-                'listening': {type: Number, default: 0},
-                'speaking': {type: Number, default: 0}
+                'reading': {type: Number, default: 1},
+                'writing': {type: Number, default: 1},
+                'listening': {type: Number, default: 1},
+                'speaking': {type: Number, default: 1}
             }
         },
         {
