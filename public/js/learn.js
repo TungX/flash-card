@@ -80,7 +80,7 @@ function success() {
     }
     $.ajax({
         method: "PUT",
-        url: "/api/practices",
+        url: "/api/practices/" + wordId,
         data: data
     }).done(function (response) {
         console.log(response);

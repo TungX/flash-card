@@ -225,6 +225,10 @@ table#words ol {
 .question {
 }
 
+.question .about{
+    font-weight: bold;
+}
+
 .question img {
     display: block;
     margin-left: auto;

@@ -1,6 +1,45 @@
 const Word = require('../../models/word');
 
 async function update(req, res) {
+    let wordId = req.param('id');
+    try {
+        console.log(wordId);
+        console.log(req.body);
+        const word = await Word.findOne({_id: wordId});
+        if (word === null)
+            res.send({
+                status: 0,
+                message: 'cannot find word of users'
+            });
+        else
+        {
+            word['skills'][req.body['skill']] += 1;
+            word['number_success_times'] += 1;
+            if (word['number_study_times'] === 0) {
+                word['number_study_times'] = 1;
+            }
+            word['scope'] = word['number_success_times'] * 1.0 / word['number_study_times'];
+
+            await word.save();
+            res.send({
+                status: 1
+            });
+
+//        var query = {_id: wordId},
+//                update = {skills[req.body['skill']]: word.skills[req.body['skill']] + 1,
+//                    number_success_times: word.number_success_times + 1,
+//                    scope: word.scope},
+//                options = {upsert: true, new : true, setDefaultsOnInsert: true};
+//        await Word.findOneAndUpdate(query, update, options);
+
+        }
+    } catch (e) {
+        console.log(e);
+        res.send({
+            status: 0,
+            message: e
+        });
+    }
 
 }
 
@@ -109,13 +148,14 @@ async function createQuestions() {
         index = Math.round(Math.random() * (word.proncs.length - 1));
         questionSpeakWord.content = word.proncs[index].audio_url;
         questionSpeakWord.answers = [{content: word.content, type: true}];
-        questionSpeakWord.skill = 'listening';
+        questionSpeakWord.skill = 'speaking';
         word.questions.push(questionSpeakWord);
 
         const questionSpeakSentence = {type: 'speak_sentence'};
         index = Math.round(Math.random() * (word.examples.length - 1));
         questionSpeakSentence.content = word.examples[index].audio_url;
         questionSpeakSentence.answers = [{content: word.examples[index].content, type: true}];
+        questionSpeakSentence.skill = 'speaking';
         word.questions.push(questionSpeakSentence);
         word.save();
 //        try {

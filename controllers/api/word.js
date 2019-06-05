@@ -16,6 +16,22 @@ async function getAll(req, res) {
     }
 }
 
+function addPractice(practices, questions, number) {
+    if (number < 0) {
+        return;
+    }
+    const length = questions.length <= number ? questions.length : number;
+    for (let i = 0; i < length; i++) {
+        const question = questions.splice(Math.round(Math.random() * (questions.length - 1)), 1)[0];
+        if (practices.length === 0) {
+            practices.push(question);
+        } else {
+            const index = Math.round(Math.random() * (practices.length - 1));
+            practices.splice(index, 0, question);
+        }
+    }
+}
+
 async function getWordLearn(req, res) {
     try {
         const page = 0;
@@ -38,19 +54,21 @@ async function getWordLearn(req, res) {
                 question['_id'] = undefined;
                 skills[question.skill].push(question);
             }
-            let sum = 0;
-            const rate = [];
-            Object.keys(word.skills).forEach(function (key) {
-                sum += word.skills[key];
-                rate.push(key);
+            const practiceOfWord = [];
+            const numberOfQuestion = words[i]['number_study_times'] + 1;
+            Object.keys(skills).forEach(function (skill) {
+                addPractice(practiceOfWord, skills[skill], numberOfQuestion - word.skills[skill]);
             });
-            rate[0] = rate[0] / sum;
-            for (let k = 1; k < rate.length; k++) {
-                rate[k] = rate[k - 1] + rate[k] / sum;
-            }
-            
-            for(let w = 0; w < 4; w++){
-                
+
+            const numberPractices = practiceOfWord.length < 4 ? practiceOfWord.length : 4;
+            for (let j = 0; j < numberPractices; j++) {
+                const question = practiceOfWord.splice(Math.round(Math.random() * (practiceOfWord.length - 1)), 1)[0];
+                if (practices.length === 0) {
+                    practices.push(question);
+                } else {
+                    const index = Math.round(Math.random() * (practices.length - 1));
+                    practices.splice(index, 0, question);
+                }
             }
 
             words[i]['number_study_times'] = words[i]['number_study_times'] + 1;
