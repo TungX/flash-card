@@ -71,6 +71,7 @@ async function createQuestions() {
     }
     for (let i = 0; i < words.length; i++) {
         const word = words[i];
+        console.log("make question at " + word.content);
         word.questions = [];
         //fill_blank_by_type
         const questionFillBlankByType = {type: 'fill_blank_by_type'};
@@ -133,16 +134,27 @@ async function createQuestions() {
         word.questions.push(questionListenWord);
 
         const questionListenSentence = {type: 'listen_sentence'};
+        example = null;
+        let count = 0;
         index = Math.round(Math.random() * (word.examples.length - 1));
-        example = word.examples[index].content;
-        result = example.match(pattern);
-        if (!!result) {
-            example = example.replace(result[0], result[1]);
+        while (count < 5) {
+            if (word.examples[index].audio_url.length > 0) {
+                break;
+            }
+            index = Math.round(Math.random() * (word.examples.length - 1));
+            count++;
         }
-        questionListenSentence.content = word.examples[index].audio_url;
-        questionListenSentence.answers = [{content: example, type: true}];
-        questionListenSentence.skill = 'listening';
-        word.questions.push(questionListenSentence);
+        if (word.examples[index].audio_url.length > 0) {
+            example = word.examples[index].content;
+            result = example.match(pattern);
+            if (!!result) {
+                example = example.replace(result[0], result[1]);
+            }
+            questionListenSentence.content = word.examples[index].audio_url;
+            questionListenSentence.answers = [{content: example, type: true}];
+            questionListenSentence.skill = 'listening';
+            word.questions.push(questionListenSentence);
+        }
 
         const questionSpeakWord = {type: 'speak_word'};
         index = Math.round(Math.random() * (word.proncs.length - 1));
@@ -153,11 +165,20 @@ async function createQuestions() {
 
         const questionSpeakSentence = {type: 'speak_sentence'};
         index = Math.round(Math.random() * (word.examples.length - 1));
-        questionSpeakSentence.content = word.examples[index].audio_url;
-        questionSpeakSentence.answers = [{content: word.examples[index].content, type: true}];
-        questionSpeakSentence.skill = 'speaking';
-        word.questions.push(questionSpeakSentence);
-        word.save();
+        while (count < 5) {
+            if (word.examples[index].length > 0) {
+                break;
+            }
+            index = Math.round(Math.random() * (word.examples.length - 1));
+            count++;
+        }
+        if (word.examples[index].audio_url.length > 0) {
+            questionSpeakSentence.content = word.examples[index].audio_url;
+            questionSpeakSentence.answers = [{content: word.examples[index].content, type: true}];
+            questionSpeakSentence.skill = 'speaking';
+            word.questions.push(questionSpeakSentence);
+        }
+        await word.save();
 //        try {
 //            const wordUpdated = await Word.updateOne({_id: word._id}, word);
 //            console.log(wordUpdated);

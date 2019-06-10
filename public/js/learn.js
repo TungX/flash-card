@@ -208,7 +208,7 @@ function catchEventCheckClick() {
                 }
             } else if ($('.slide.active .group.sort').length) {
                 console.log('sort');
-                if ($('.slide.active .answer-area').text().trim() === $('.slide.active .answer-area').data('answer')) {
+                if ($('.slide.active .answer-area').text().replace(/  +/g, ' ').trim() === $('.slide.active .answer-area').data('answer')) {
                     success();
                 } else {
                     $('.slide.active .group.sort .message').html($('.slide.active .answer-area').data('answer'));
@@ -347,7 +347,7 @@ function catchEventSelectToken() {
 
         $(this).parents('.answers').find(toggleClass).append($(this)).append(' ');
         if ($('.slide.active .tokens-area .token:visible').length === 0) {
-            if ($('.slide.active .answer-area').text().trim() === $('.slide.active .answer-area').data('answer')) {
+            if ($('.slide.active .answer-area').text().replace(/  +/g, ' ').trim() === $('.slide.active .answer-area').data('answer')) {
                 success();
             }
         }
