@@ -15,6 +15,7 @@ $(document).ready(function () {
     loadWords();
     catchEventEditWordClick();
     catchEventHighLineTextClick();
+    catchEventImageChange();
 });
 
 function catchEventHighLineTextClick() {
@@ -26,7 +27,7 @@ function catchEventHighLineTextClick() {
             var selection = window.getSelection();
             if (selection.isCollapsed) {
                 var content = $(selection.baseNode).find('textarea');
-                
+
                 if (content.length === 1) {
                     var text = content.val();
                     var selectionText = selection.toString();
@@ -90,7 +91,12 @@ function loadWords() {
                 var descriptions = row.find('.descriptions ol');
                 for (var j = 0; j < word.descriptions.length; j++) {
                     var element = descriptions.find('li.pattern').clone().removeClass('pattern').removeClass('non-display');
-                    element.html(word.descriptions[j].content);
+                    if (word.descriptions[j].type === 'image') {
+                        element.html('<img src=' + word.descriptions[j].content + '>')
+                    } else {
+                        element.html(word.descriptions[j].content);
+                    }
+
                     descriptions.append(element);
                 }
 
@@ -132,10 +138,12 @@ function catchEventClickAddElement() {
         element.find('textarea').val('');
         wrapperContent.append(element);
         catchEventClickRemoveElement();
+        catchEventImageChange();
     });
 }
 
 function catchEventClickRemoveElement() {
+    $('.remove-element a').off('click');
     $('.remove-element a').on('click', function () {
         var group = $(this).parents('.group');
         group.remove();
@@ -155,6 +163,26 @@ function catchEventClickNavItem() {
             $('.btn.highlight').addClass('non-display');
         }
         $('#add-word .' + tabClass).removeClass('non-display');
+    });
+}
+function readFile(element) {
+    if (element.files && element.files[0]) {
+
+        var FR = new FileReader();
+        var group = $(element).parents('.form-group');
+        FR.onload = function (e) {
+            group.find("img")[0].src = e.target.result;
+        };
+        FR.onerror = function (event) {
+            alert("I AM ERROR: " + event.target.error.code);
+        };
+        FR.readAsDataURL(element.files[0]);
+    }
+}
+function catchEventImageChange() {
+    $('.tab-content.descriptions input[type=file]').off('change');
+    $('.tab-content.descriptions input[type=file]').on('change', function () {
+        readFile(this);
     });
 }
 
@@ -214,6 +242,7 @@ function catchEventWordFormSubmit() {
             pronc.type = 'text';
             if (group.find('.content').is('input')) {
                 pronc.type = 'image';
+                pronc.content = group.find('img')[0].src;
             }
             data['descriptions'].push(pronc);
         }
@@ -366,6 +395,10 @@ function setExamplesValue(val, element) {
 function setDescriptionsValue(val, element) {
     if (!val) {
         return false;
+    }
+    if (val.type === 'image') {
+        element.parents('.group').find('img')[0].src = val.content;
+        return true;
     }
     element.find('.content').val(val.content);
     return true;

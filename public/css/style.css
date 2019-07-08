@@ -179,6 +179,10 @@ and open the template in the editor.
     /*position: relative;*/
 }
 
+.descriptions img {
+    max-height: 150px;
+}
+
 .group .remove-element {
     text-align: right;
 }

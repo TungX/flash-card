@@ -27,9 +27,8 @@ mongoose.connect(uri, options, )
 
 //var morgan = require('morgan');
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true, limit: '100mb'}));
 app.use(bodyParser.json({limit: '100mb'}));
-
 app.use(cookieParser());
 
 
