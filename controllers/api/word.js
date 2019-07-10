@@ -2,8 +2,13 @@ const Word = require('../../models/word');
 
 async function getAll(req, res) {
     try {
+        const query = req['query'];
+        const page = query['page'] || 0;
+        const wordPerPage = 10;
         const userId = 'blue.rose.hut@gmail.com';
-        const words = await Word.find({'user_id': userId});
+//        const words = await Word.find({'user_id': userId});
+        const words = await Word.find({'user_id': userId}, {},
+                {limit: wordPerPage, skip: wordPerPage * page, sort: {'_id': -1}});
         res.send({
             status: 1,
             words: words
