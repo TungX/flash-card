@@ -331,11 +331,22 @@ function catchEventEditWordClick() {
                         modal.find('.examples .wrapper-content').append(element);
                     }
                 }
-
-                setDescriptionsValue(word.descriptions[0], modal.find('.descriptions .pattern'));
+                if (word.descriptions[0].type === 'text')
+                    setDescriptionsValue(word.descriptions[0], modal.find('.descriptions .pattern'));
+                else
+                    setDescriptionsValue(word.descriptions[0], modal.find('.descriptions .pattern-file'));
                 for (var i = 1; i < word.descriptions.length; i++) {
                     var val = word.descriptions[i];
-                    var element = modal.find('.descriptions .pattern').clone().removeClass('pattern');
+                    var element;
+                    if (val.type === 'text')
+                        element = modal.find('.descriptions .pattern').clone().removeClass('pattern');
+                    else {
+                        element = modal.find('.descriptions .pattern-file');
+                        if(element.find('img')[0].src.length > 0){
+                            element = element.clone().removeClass('pattern-file');
+                        }
+                    }
+
                     element.find('.remove-element').removeClass('non-display');
                     if (setDescriptionsValue(val, element)) {
                         modal.find('.descriptions .wrapper-content').append(element);
@@ -397,7 +408,8 @@ function setDescriptionsValue(val, element) {
         return false;
     }
     if (val.type === 'image') {
-        element.parents('.group').find('img')[0].src = val.content;
+//        element.find('input').val('./image.jpg');
+        element.find('img')[0].src = val.content;
         return true;
     }
     element.find('.content').val(val.content);
