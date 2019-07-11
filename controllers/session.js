@@ -18,7 +18,7 @@ function login(req, res) {
             password = req.body.password;
     console.log(req.body);
     console.log(email);
-    User.findOne({email: 'blue.rose.hut@gmail.com'}).then(function (user) {        
+    User.findOne({email: email}).then(function (user) {        
         if (!user) {
             console.log('user is '+user);
             res.redirect('/sessions');

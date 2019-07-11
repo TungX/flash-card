@@ -5,7 +5,8 @@ async function getAll(req, res) {
         const query = req['query'];
         const page = query['page'] || 0;
         const wordPerPage = 10;
-        const userId = 'blue.rose.hut@gmail.com';
+        const userId = req.session.user._id;
+        console.log('user id: '+userId);
 //        const words = await Word.find({'user_id': userId});
         const words = await Word.find({'user_id': userId}, {},
                 {limit: wordPerPage, skip: wordPerPage * page, sort: {'_id': -1}});
@@ -41,7 +42,7 @@ async function getWordLearn(req, res) {
     try {
         const page = 0;
         const wordPerPage = 5;
-        const userId = 'blue.rose.hut@gmail.com';
+        const userId = req.session.user._id;
         const words = await Word.find({'user_id': userId}, {},
                 {limit: wordPerPage, skip: wordPerPage * page, sort: {scope: 1}});
         const wordToLearns = [];
@@ -107,7 +108,7 @@ async function getWordLearn(req, res) {
 async function show(req, res) {
     try {
         const id = req.param('id');
-        const userId = 'blue.rose.hut@gmail.com';
+        const userId = req.session.user._id;
         const word = await Word.findOne({'user_id': userId, '_id': id});
         if (word === null)
             res.send({
@@ -129,7 +130,7 @@ async function show(req, res) {
 
 async function insert(req, res) {
     let wordInfo = req.body;
-    wordInfo['user_id'] = 'blue.rose.hut@gmail.com';
+    wordInfo['user_id'] = req.session.user._id;
     try {
         const word = await Word.create(wordInfo);
         res.send({

@@ -16,8 +16,8 @@ var options = {
     autoIndex: false,
     useNewUrlParser: true
 };
-//var uri = 'mongodb://heroku_nsrkjq2k:89jau49iammlhef1n7bm8d3iq7@ds261296.mlab.com:61296/heroku_nsrkjq2k';
-var uri = 'mongodb://localhost:27017/flashcard';
+var uri = 'mongodb://heroku_nsrkjq2k:89jau49iammlhef1n7bm8d3iq7@ds261296.mlab.com:61296/heroku_nsrkjq2k';
+//var uri = 'mongodb://localhost:27017/flashcard';
 mongoose.connect(uri, options, )
         .then(() => {
             console.log(`Connected database successfully: ${uri}`);
@@ -26,7 +26,9 @@ mongoose.connect(uri, options, )
         });
 
 //var morgan = require('morgan');
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+
+//app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true, limit: '100mb'}));
 app.use(bodyParser.json({limit: '100mb'}));
 app.use(cookieParser());
@@ -41,7 +43,7 @@ app.use(session({
         expires: 600000
     }
 }));
-var urlNonAuths = ['/sessions', '/users/add', '/users', '/words'];
+var urlNonAuths = ['/sessions', '/users', '/users/add'];
 app.use((req, res, next) => {
     if (req.cookies.user_sid && !req.session.user) {
         res.clearCookie('user_sid');
@@ -50,10 +52,10 @@ app.use((req, res, next) => {
         next();
         return;
     }
-//    if (!req.session.user || !req.cookies.user_sid) {
-//        res.redirect('/sessions');
-//        return;
-//    }
+    if (!req.session.user || !req.cookies.user_sid) {
+        res.redirect('/sessions');
+        return;
+    }
     next();
 });
 
