@@ -10,4 +10,5 @@ const controller = require('../controllers/session');
 router.get('/', controller.show);
 router.post('/', controller.login);
 router.delete('/', controller.logout);
+router.get('/logout', controller.logout);
 module.exports = router;

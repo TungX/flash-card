@@ -5,6 +5,7 @@
  */
 const User = require('../models/user');
 
+
 function show(req, res) {
     if (req.session.user && req.cookies.user_sid) {
         res.redirect('/');
@@ -16,11 +17,10 @@ function show(req, res) {
 function login(req, res) {
     var email = req.body.email,
             password = req.body.password;
-    console.log(req.body);
     console.log(email);
-    User.findOne({email: email}).then(function (user) {        
+    User.findOne({email: email}).then(function (user) {
         if (!user) {
-            console.log('user is '+user);
+            console.log('user is ' + user);
             res.redirect('/sessions');
         } else if (!user.validPassword(password)) {
             console.log('password is valid ');
@@ -28,17 +28,21 @@ function login(req, res) {
         } else {
             console.log('login success');
             req.session.user = user;
-            console.log(req.session.user);
-            res.redirect('/words');
+            const pattern = new RegExp('(android|ip(ad|hone|od)|kindle)', 'i');
+            const isMobile = pattern.test(req.headers['user-agent'].toLowerCase());
+            if (isMobile)
+                res.redirect('/');
+            else
+                res.redirect('/words');
         }
-        
+
     });
 }
 
 function logout(req, res) {
     if (req.session.user && req.cookies.user_sid) {
-        res.clearCookie('user_sid');        
-        res.redirect('/');
+        res.clearCookie('user_sid');
+        res.redirect('/sessions');
     }
 }
 

@@ -40,7 +40,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 600000
+        expires: 6000000
     }
 }));
 var urlNonAuths = ['/sessions', '/users', '/users/add'];
